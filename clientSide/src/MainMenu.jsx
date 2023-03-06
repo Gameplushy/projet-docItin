@@ -4,6 +4,8 @@ import './App.css'
 import {getAuth, signOut} from 'firebase/auth'
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { getFirestore, collection, query, where, doc, getDocs } from 'firebase/firestore';
+import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
 
 function MainMenu() {
   const firebasestuff = {   
@@ -19,14 +21,30 @@ function MainMenu() {
   const navi = useNavigate();
   const auth = getAuth();
 
-  const [user, setUser] = useState("")
+  const [user, setUser] = useState(null)
   const [userFound, loading, error] = useAuthState(auth)
+  const [userData, setUserData] = useState({})
+
+    
   useEffect(()=>{
-    if(!userFound) navi("/")
-    setUser(userFound)
-    console.log(auth)
+    if(!loading && !userFound){
+      navi("/")
+    }
+    if(!loading && userFound){
+      // Firestore
+      setUser(userFound)
+      getDocs(query(collection(getFirestore(app),"/users"),where("uid","==",userFound.uid))).then(
+        a=>a.forEach(
+          b=>{
+            if(b.data().userType!="client"){
+              Disconnect()
+            } 
+            setUserData(b.data())
+          }
+        ))
+    }
   }
-  ,[])
+  ,[loading, userFound, navi])
 
   function GoList(){
 
@@ -42,7 +60,7 @@ function MainMenu() {
 
   return (
     <div className="MainMenu">
-        {loading ? "Please wait" : JSON.stringify(user)}
+        {userData.firstName == undefined ? "" : <div>{"Bonjour "+userData.firstName+" "+userData.lastName}</div>}
         <button onClick={GoList}>List of rendez-vous</button>
         <button onClick={GoForm}>Take a rendez-vous</button>
         <button onClick={Disconnect}>Déconnexion</button>
