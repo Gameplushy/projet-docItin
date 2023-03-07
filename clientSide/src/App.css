@@ -59,3 +59,7 @@ label{
 .AppointmentForm div{
   margin: 2.5em 0;
 }
+
+th, td{
+  border : 1px solid black
+}

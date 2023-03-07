@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import Auth from './Auth'
 import MainMenu from './MainMenu'
 import AppointmentForm from './AppointmentForm'
+import AppointmentList from './AppointmentList'
 import './index.css'
 import {
   createBrowserRouter,
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: "/appointmentForm",
     element: <AppointmentForm/>
+  },
+  {
+    path: "/appointmentList",
+    element: <AppointmentList/>
   }
 ]);
 

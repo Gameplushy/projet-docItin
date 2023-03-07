@@ -46,7 +46,7 @@ function MainMenu() {
   ,[loading, userFound, navi])
 
   function GoList(){
-
+    navi("/appointmentList")
   }
 
   function GoForm(){
@@ -59,9 +59,9 @@ function MainMenu() {
 
   return (
     <div className="MainMenu">
-        {userData.firstName == undefined ? "" : <div>{"Bonjour "+userData.firstName+" "+userData.lastName}</div>}
-        <button onClick={GoList}>List of rendez-vous</button>
-        <button onClick={GoForm}>Take a rendez-vous</button>
+        {userData.firstName == undefined ? "" : <div>{"Hello "+userData.firstName+" "+userData.lastName}</div>}
+        <button onClick={GoList}>My appointments</button>
+        <button onClick={GoForm}>Make an appointment</button>
         <button onClick={Disconnect}>Déconnexion</button>
     </div>
   )
