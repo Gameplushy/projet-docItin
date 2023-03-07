@@ -4,8 +4,7 @@ import './App.css'
 import {getAuth, signOut} from 'firebase/auth'
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { getFirestore, collection, query, where, doc, getDocs } from 'firebase/firestore';
-import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
+import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
 
 function MainMenu() {
   const firebasestuff = {   
@@ -51,7 +50,7 @@ function MainMenu() {
   }
 
   function GoForm(){
-
+    navi("/appointmentForm")
   }
 
   function Disconnect(){

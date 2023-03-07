@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Auth from './Auth'
 import MainMenu from './MainMenu'
+import AppointmentForm from './AppointmentForm'
 import './index.css'
 import {
   createBrowserRouter,
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/usermenu",
     element: <MainMenu/>
+  },
+  {
+    path: "/appointmentForm",
+    element: <AppointmentForm/>
   }
 ]);
 
