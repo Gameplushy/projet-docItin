@@ -89,9 +89,34 @@ function AppointmentForm() {
       date : chosenDate
     }).then(()=>{
       //Look if notification compatibility
-      alert("Done !")
+      NotifySuccess()
       navi("/userMenu")
     })
+  }
+
+  function NotifySuccess(){
+    if(!('Notification' in window)){
+      alert("RDV créé avec succès !")
+      return;
+    } 
+    Notification.requestPermission().then((res)=>{
+      if(res=='granted') {
+        try{
+            new Notification("RDV créé avec succès !")
+        }
+        catch{
+          try{
+            navigator.serviceWorker.getRegistration()
+              .then((reg) => reg.showNotification("RDV créé avec succès !"))
+              .catch((err) => alert('Service Worker registration error: ' + err));
+          }
+          catch{
+              alert("RDV créé avec succès !")
+          }
+        }
+      }
+    })
+
   }
 
   return (
