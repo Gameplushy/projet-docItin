@@ -57,12 +57,21 @@ function MainMenu() {
     signOut(auth).then(navi("/")).catch((error)=>console.log(error));
   }
 
+  function ExplainPWA(){
+    navi("/pwa")
+  }
+
   return (
     <div className="MainMenu">
         {userData.firstName == undefined ? "" : <div>{"Hello "+userData.firstName+" "+userData.lastName}</div>}
-        <button onClick={GoList}>My appointments</button>
-        <button onClick={GoForm}>Make an appointment</button>
-        <button onClick={Disconnect}>Déconnexion</button>
+        <div>
+          <button onClick={GoList}>My appointments</button>
+          <button onClick={GoForm}>Make an appointment</button>
+          <button onClick={Disconnect}>Déconnexion</button>
+        </div>
+        <div>
+          <button onClick={ExplainPWA}>What's a PWA?</button>
+        </div>
     </div>
   )
 }

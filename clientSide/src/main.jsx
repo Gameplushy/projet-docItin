@@ -4,6 +4,7 @@ import Auth from './Auth'
 import MainMenu from './MainMenu'
 import AppointmentForm from './AppointmentForm'
 import AppointmentList from './AppointmentList'
+import PWAExplanation from './PWAExplaination'
 import './index.css'
 import {
   createBrowserRouter,
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: "/appointmentList",
     element: <AppointmentList/>
+  },
+  {
+    path: "/pwa",
+    element: <PWAExplanation/>
   }
 ]);
 
