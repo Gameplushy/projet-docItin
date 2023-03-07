@@ -124,6 +124,7 @@ function AppointmentForm() {
       <div>
           <label>Docteur</label>
           <select value={chosenDoc} onChange={ChangeDoc}>
+            <option value={null}>Choisir un docteur...</option>
             {docList == [] ? "" : docList.map((doc)=><option value={doc[0]}>{doc[1]+" "+doc[2]}</option>)}
           </select>
       </div>
