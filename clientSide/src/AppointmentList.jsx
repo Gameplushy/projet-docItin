@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getFirestore, collection, query, where, getDocs, addDoc } from 'firebase/firestore';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
+import {saveAs} from 'file-saver'
+import {createEvent} from 'ics'
 
 
 function AppointmentList() {
@@ -62,6 +64,21 @@ function AppointmentList() {
         )
   },[loading,loadingUser,list,userFound])
 
+  function CreateICS(ap){
+    const event = {
+        start: [Number.parseInt(ap.date.substring(0,4)), Number.parseInt(ap.date.substring(5,7)), Number.parseInt(ap.date.substring(8,10)), Number.parseInt(ap.date.substring(11,13)), Number.parseInt(ap.date.substring(14,16))],
+        duration: { minutes: 30 },
+        title: "Doctor's Appointment with "+ap.doctor,
+        location: ap.place,
+    }
+    console.log(event)
+    createEvent(event,(error,value)=>{
+        const blob = new Blob([value], { type: "text/plain;charset=utf-8" });
+        saveAs(blob, "event-schedule.ics");
+    })
+
+  }
+
   return (
     <div className="AppointmentList">
         <table>
@@ -70,6 +87,7 @@ function AppointmentList() {
                 <th>Docteur</th>
                 <th>Date</th>
                 <th>Lieu</th>
+                <th>ics</th>
             </tr>
             </thead>
             <tbody>
@@ -78,6 +96,7 @@ function AppointmentList() {
                         <td>{ap.doctor}</td>
                         <td>{ap.date}</td>
                         <td>{ap.place}</td>
+                        <td><button onClick={()=>CreateICS(ap)}>ics</button></td>
                     </tr>
                 )}
             </tbody>
