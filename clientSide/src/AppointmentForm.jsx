@@ -5,7 +5,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import './App.css'
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
+import { getFirestore, collection, query, where, getDocs, addDoc } from 'firebase/firestore';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 
@@ -73,14 +73,36 @@ function AppointmentForm() {
   },[loading,list])
 
   function Submit(){
-    
+    if(!chosenPlace || !chosenDoc || !chosenDate){
+      alert("Each field must be completed")
+      return;
+    }
+    if(loading || loadingUser){
+      alert("Please wait for everything to load before doing anything.");
+      return;
+    }
+    console.log(chosenDoc)
+    addDoc(collection(getFirestore(app),"/appointments"),{
+      client : userFound.uid,
+      doctor : chosenDoc,
+      place : chosenPlace,
+      date : chosenDate
+    }).then(()=>{
+      //Look if notification compatibility
+      alert("Done !")
+      navi("/userMenu")
+    })
   }
 
   return (
     <div className="AppointmentForm">
-        <select value={chosenDoc} onChange={ChangeDoc}>
+      <div>
+          <label>Docteur</label>
+          <select value={chosenDoc} onChange={ChangeDoc}>
             {docList == [] ? "" : docList.map((doc)=><option value={doc[0]}>{doc[1]+" "+doc[2]}</option>)}
-        </select>
+          </select>
+      </div>
+
         <div>
           <label>Date</label>
           <input type="datetime-local" value={chosenDate} onChange={ChangeDate}/>

@@ -55,3 +55,7 @@ label{
   border: 1px solid red;
   border-radius: 25px;
 }
+
+.AppointmentForm div{
+  margin: 2.5em 0;
+}
