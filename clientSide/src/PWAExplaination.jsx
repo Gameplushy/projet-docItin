@@ -35,7 +35,7 @@ function PWAExplanation() {
     <div className="PWAExplanation">
       {isVisible ? 
       <div>
-        <button className="PWAButton " onClick={GetPWA}>Install the PWA here!</button>
+        <button className="PWAButton" onClick={GetPWA}>Install the PWA here!</button>
         <div>
           <img src="explainChrome.png"/>
         </div>
