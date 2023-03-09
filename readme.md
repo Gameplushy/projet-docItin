@@ -1,7 +1,7 @@
 # Côté client
-Dossier clientSide
+Dossier clientSide\
 Lien netlify : https://docitinclient.netlify.app
 
 # Côté docteur
-Dosiier doctorSide
+Dosiier doctorSide\
 Lien netlify : https://docitindoctor.netlify.app
