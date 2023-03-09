@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import PWAExplanation from './PWAExplaination'
 import AppointmentList from './AppointmentList'
+import AppointmentMap from './AppointmentMap'
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
   {
     path: "/editAppointment/:id",
     element: <EditAppointment/>
+  },
+  {
+    path: "/roadMap",
+    element: <AppointmentMap/>
   }
 ]);
 

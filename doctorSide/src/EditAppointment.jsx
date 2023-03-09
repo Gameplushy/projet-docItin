@@ -36,12 +36,21 @@ function EditAppointment() {
       navi("/userMenu");
       return;
     }
-    console.log(appointment)
+    if(!appointment){
+      alert("Appointment doesn't exist.");
+      navi("/userMenu")
+      return;
+    }
+    if(!userFound){
+      navi("/");
+      return;
+    }
     getDocs(query(collection(getFirestore(app),"/users"),where("uid","==",userFound.uid))).then(
       a=>a.forEach(
         b=>{
           if(b.data().userType!="doctor" || userFound.uid != appointment.doctor){
             Disconnect()
+            return;
           }
           setDate(appointment.date)
         }

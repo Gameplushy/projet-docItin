@@ -63,3 +63,8 @@ label{
 th, td{
   border : 1px solid black
 }
+
+.map{
+  height: 1028px;
+  width: 1028px;
+}

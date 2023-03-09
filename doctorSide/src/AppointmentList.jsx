@@ -36,6 +36,10 @@ function AppointmentList() {
         alert("An error has occured");
         navi("/userMenu");
     }
+    if(!userFound){
+      navi("/")
+      return;
+    }
     getDocs(query(collection(getFirestore(app),"/users"),where("uid","==",userFound.uid))).then(
         a=>a.forEach(
           b=>{
