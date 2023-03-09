@@ -7,8 +7,8 @@ export default defineConfig({
   plugins: [react(),
     VitePWA({ registerType: 'autoUpdate',
     manifest : {
-      "theme_color": "#50e3c2",
-      "background_color": "#50e3c2",
+      "theme_color": "#e35050",
+      "background_color": "#e35050",
       "display": "standalone",
       "scope": "/",
       "start_url": "/",

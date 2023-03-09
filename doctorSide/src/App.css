@@ -68,3 +68,8 @@ th, td{
   height: 1028px;
   width: 1028px;
 }
+
+.PWAButton{
+  background-color: #e35050;
+  color: whitesmoke;
+}

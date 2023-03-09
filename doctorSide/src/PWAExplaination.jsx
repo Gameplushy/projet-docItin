@@ -13,9 +13,12 @@ function PWAExplanation() {
     navi("/userMenu")
   }
 
+  const [isVisible, changeVisibility] = useState(false)
+
   var installer = null
 
   window.addEventListener('beforeinstallprompt', (e) => {
+    changeVisibility(true)
     installer = e;
   });
 
@@ -31,12 +34,17 @@ function PWAExplanation() {
 
   return (
     <div className="PWAExplanation">
-      <button onClick={GetPWA}>Install the PWA here!</button>
+      {isVisible ? 
       <div>
-        <img src="explainChrome1.png"/>
-        <img src="explainChrome2.png"/>
+        <button className="PWAButton " onClick={GetPWA}>Install the PWA here!</button>
+        <div>
+          <img src="explainChrome.png"/>
+        </div>
+        <p>You won't have to open a browser to get in anymore!</p>       
       </div>
-      <p>You won't have to open a browser to get in anymore!</p>
+      : 
+      <p>You cannot access the PWA app in this state.</p>
+      }
       <div><button onClick={GoBack}>Go Back</button></div>
     </div>
   )
