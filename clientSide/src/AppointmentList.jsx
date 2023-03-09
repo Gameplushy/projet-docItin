@@ -5,7 +5,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import './App.css'
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { getFirestore, collection, query, where, getDocs, addDoc } from 'firebase/firestore';
+import { getFirestore, collection, query, where, getDocs, addDoc, Timestamp } from 'firebase/firestore';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import {saveAs} from 'file-saver'
 import {createEvent} from 'ics'
@@ -50,17 +50,15 @@ function AppointmentList() {
                     apl.forEach(ap=>{
                         var data = ap.data();
                         var doc = list.filter(d=>d.uid == data.doctor)[0];
-                        console.log(doc)
                         data.doctor = doc.firstName+" "+doc.lastName
+                        data.date = data.date.toDate().toLocaleDateString("fr-FR")+" "+data.date.toDate().toLocaleTimeString("fr-FR") //Why is JS so awful when it comes to formatting dates 
                         array.push(data)
                     })
                     console.log(array)
                     setList(array)
                 })
             }
-
-            )
-          
+            )         
         )
   },[loading,loadingUser,list,userFound])
 

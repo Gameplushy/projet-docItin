@@ -51,13 +51,12 @@ function AppointmentList() {
                 {
                     var array = []
                     apl.forEach(ap=>{
-                        console.log(ap.data())
-                        console.log(ap)
                         var data = ap.data();
                         data.key = ap.id
                         var patient = list.filter(d=>d.uid == data.client)[0];
                         console.log(patient)
                         data.client = patient.firstName+" "+patient.lastName
+                        data.date = data.date.toDate().toLocaleDateString("fr-FR")+" "+data.date.toDate().toLocaleTimeString("fr-FR") //Why is JS so awful when it comes to formatting dates 
                         array.push(data)
                     })
                     console.log(array)

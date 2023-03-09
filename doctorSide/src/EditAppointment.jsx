@@ -4,10 +4,8 @@ import { getAuth } from "firebase/auth";
 import './App.css'
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { getFirestore, collection, query, where, getDocs, addDoc, doc, getDoc, updateDoc } from 'firebase/firestore';
+import { getFirestore, collection, query, where, getDocs, addDoc, doc, getDoc, updateDoc, Timestamp } from 'firebase/firestore';
 import { useDocument, useDocumentData } from 'react-firebase-hooks/firestore';
-import {saveAs} from 'file-saver'
-import {createEvent} from 'ics'
 import { useParams } from 'react-router-dom';
 
 function EditAppointment() {
@@ -25,7 +23,6 @@ function EditAppointment() {
   const navi = useNavigate();
   const auth = getAuth();
 
-  //const [list,loading,error] = useCollectionData(query(collection(getFirestore(app),"/users"),where("userType","==","client")))
   const [appointment, loading, error] = useDocumentData(doc(getFirestore(app),"/appointments",id)) //TODO GET WITH ID
   const [userFound, loadingUser, errorUser] = useAuthState(auth)
 
@@ -52,7 +49,8 @@ function EditAppointment() {
             Disconnect()
             return;
           }
-          setDate(appointment.date)
+          const initialDate = appointment.date.toDate().toISOString()
+          setDate(initialDate.substring(0,initialDate.length-5))
         }
       ))
   },[loadingUser,loading])
@@ -69,7 +67,7 @@ function Submit(){
     return;
   }
   const d = doc(getFirestore(app),"/appointments",id)
-  updateDoc(d,{date : chosenDate}).then(()=>{
+  updateDoc(d,{date : Timestamp.fromDate(new Date(chosenDate))}).then(()=>{
     alert("Modifié !");
     navi("/appointmentList")
   })

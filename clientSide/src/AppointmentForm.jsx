@@ -5,7 +5,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import './App.css'
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { getFirestore, collection, query, where, getDocs, addDoc } from 'firebase/firestore';
+import { getFirestore, collection, query, where, getDocs, addDoc, Timestamp } from 'firebase/firestore';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 
@@ -86,7 +86,7 @@ function AppointmentForm() {
       client : userFound.uid,
       doctor : chosenDoc,
       place : chosenPlace,
-      date : chosenDate
+      date : Timestamp.fromDate(new Date(chosenDate))
     }).then(()=>{
       //Look if notification compatibility
       NotifySuccess()
