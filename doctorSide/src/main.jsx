@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Auth from './Auth'
 import MainMenu from './MainMenu'
+import EditAppointment from './EditAppointment'
 import './index.css'
 import {
   createBrowserRouter,
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: "/appointmentList",
     element: <AppointmentList/>
+  },
+  {
+    path: "/editAppointment/:id",
+    element: <EditAppointment/>
   }
 ]);
 

@@ -47,7 +47,10 @@ function AppointmentList() {
                 {
                     var array = []
                     apl.forEach(ap=>{
+                        console.log(ap.data())
+                        console.log(ap)
                         var data = ap.data();
+                        data.key = ap.id
                         var patient = list.filter(d=>d.uid == data.client)[0];
                         console.log(patient)
                         data.client = patient.firstName+" "+patient.lastName
@@ -78,6 +81,11 @@ function AppointmentList() {
 
   }
 
+  function EditDate(ap){
+    console.log(ap)
+    navi("/editAppointment/"+ap.key);
+  }
+
   return (
     <div className="AppointmentList">
         <table>
@@ -86,6 +94,7 @@ function AppointmentList() {
                 <th>Patient</th>
                 <th>Date</th>
                 <th>Lieu</th>
+                <th>Modifier date</th>
                 <th>ics</th>
             </tr>
             </thead>
@@ -95,6 +104,7 @@ function AppointmentList() {
                         <td>{ap.client}</td>
                         <td>{ap.date}</td>
                         <td>{ap.place}</td>
+                        <td><button onClick={()=>EditDate(ap)}>Modifier date</button></td>
                         <td><button onClick={()=>CreateICS(ap)}>ics</button></td>
                     </tr>
                 )}
