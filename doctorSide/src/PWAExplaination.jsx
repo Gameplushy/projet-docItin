@@ -13,9 +13,25 @@ function PWAExplanation() {
     navi("/userMenu")
   }
 
+  var installer = null
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    installer = e;
+  });
+
+  async function GetPWA(){
+    if(installer!=null){
+      installer.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === 'accepted') {
+        installer = null;
+      }
+    }
+  }
+
   return (
     <div className="PWAExplanation">
-      <p>Install the PWA here!</p>
+      <button onClick={GetPWA}>Install the PWA here!</button>
       <div>
         <img src="explainChrome1.png"/>
         <img src="explainChrome2.png"/>
