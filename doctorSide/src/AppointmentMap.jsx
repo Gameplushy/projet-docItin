@@ -5,9 +5,8 @@ import {getAuth, signOut} from 'firebase/auth'
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
+import { getFirestore, collection, query, where, getDocs, Timestamp } from 'firebase/firestore';
 import { MapContainer, TileLayer, useMap } from 'react-leaflet'
-import { FireSQL } from 'firesql';
 
 function AppointmentMap() {
   const firebasestuff = {   
@@ -66,26 +65,23 @@ function AppointmentMap() {
 
   function GetAppointmentList(){
     if(!chosenDay) return;
-    var firesql = new FireSQL()
-    firesql.query("SELECT * FROM appointments WHERE doctor = '"+userFound.uid+"' AND date LIKE '"+chosenDay+"%'").then(res=>{
-      console.log(res)
+    //TODO
+    getDocs(query(collection(getFirestore(app),"/appointments"),where("doctor","==",userFound.uid),where("date","==",Timestamp.fromDate(new Date(chosenDay))))).then((res)=>{
+      var array = []
+      res.forEach(ap=>{
+        var data = ap.data();
+        //data.key = ap.id
+        var patient = clientList.filter(d=>d.uid == data.client)[0];
+        console.log(patient)
+        //data.client = patient.firstName+" "+patient.lastName
+        array.push({
+          name : patient.firstName+" "+patient.lastName,
+          location : data.place
+        })
+      })
+      console.log(array)
+      setAPList(array)
     })
-    // getDocs(query(collection(getFirestore(app),"/appointments"),where("doctor","==",userFound.uid))).then((res)=>{
-    //   var array = []
-    //   res.forEach(ap=>{
-    //     var data = ap.data();
-    //     //data.key = ap.id
-    //     var patient = clientList.filter(d=>d.uid == data.client)[0];
-    //     console.log(patient)
-    //     //data.client = patient.firstName+" "+patient.lastName
-    //     array.push({
-    //       name : patient.firstName+" "+patient.lastName,
-    //       location : data.place
-    //     })
-    //   })
-    //   console.log(array)
-    //   setAPList(array)
-    // })
   }
 
   useEffect(()=>GetAppointmentList(),[chosenDay])

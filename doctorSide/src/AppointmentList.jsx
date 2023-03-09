@@ -71,12 +71,11 @@ function AppointmentList() {
 
   function CreateICS(ap){
     const event = {
-        start: [Number.parseInt(ap.date.substring(0,4)), Number.parseInt(ap.date.substring(5,7)), Number.parseInt(ap.date.substring(8,10)), Number.parseInt(ap.date.substring(11,13)), Number.parseInt(ap.date.substring(14,16))],
+      start: [Number.parseInt(ap.date.substring(6,10)), Number.parseInt(ap.date.substring(3,5)), Number.parseInt(ap.date.substring(0,2)), Number.parseInt(ap.date.substring(11,13)), Number.parseInt(ap.date.substring(14,16))],
         duration: { minutes: 30 },
         title: "Appointment with "+ap.client,
         location: ap.place,
     }
-    console.log(event)
     createEvent(event,(error,value)=>{
         const blob = new Blob([value], { type: "text/plain;charset=utf-8" });
         saveAs(blob, "event-schedule.ics");
