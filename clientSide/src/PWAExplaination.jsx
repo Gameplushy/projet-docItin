@@ -20,7 +20,7 @@ function PWAExplanation() {
   async function GetPWA(){
     if(installer!=null){
       installer.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
+      const { outcome } = await installer.userChoice;
       if (outcome === 'accepted') {
         installer = null;
       }

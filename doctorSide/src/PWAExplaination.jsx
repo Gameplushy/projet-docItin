@@ -22,7 +22,7 @@ function PWAExplanation() {
     if(installer!=null){
       console.log("beep")
       installer.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
+      const { outcome } = await installer.userChoice;
       if (outcome === 'accepted') {
         installer = null;
       }
