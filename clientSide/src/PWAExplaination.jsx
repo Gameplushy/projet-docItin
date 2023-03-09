@@ -14,7 +14,7 @@ function PWAExplanation() {
   }
 
   var installer = null
-  const [isVisible, changeVisibility] = useState(false)
+  const [isVisible, changeVisibility] = useState(true)
 
   window.addEventListener('beforeinstallprompt', (e) => {
     changeVisibility(true)

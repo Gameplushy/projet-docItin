@@ -13,7 +13,7 @@ function PWAExplanation() {
     navi("/userMenu")
   }
 
-  const [isVisible, changeVisibility] = useState(false)
+  const [isVisible, changeVisibility] = useState(true)
 
   var installer = null
 
