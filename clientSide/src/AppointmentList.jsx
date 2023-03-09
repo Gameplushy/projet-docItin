@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react'
 import { initializeApp } from "firebase/app";
-import reactLogo from './assets/react.svg'
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import './App.css'
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { getFirestore, collection, query, where, getDocs, addDoc, Timestamp } from 'firebase/firestore';
+import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import {saveAs} from 'file-saver'
 import {createEvent} from 'ics'

@@ -24,7 +24,6 @@ function AppointmentMap() {
 
   const [user, setUser] = useState(null)
   const [userFound, loading, error] = useAuthState(auth)
-  const [userData, setUserData] = useState({})
 
   const [clientList, loadingClients, errorClients] = useCollectionData(query(collection(getFirestore(app),"/users"),where("userType","==","client"))) 
 

@@ -1,10 +1,6 @@
-import { useEffect, useState } from 'react'
-import { initializeApp } from "firebase/app";
+import { useState } from 'react'
 import './App.css'
-import {getAuth, signOut} from 'firebase/auth'
 import { useNavigate } from "react-router-dom";
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
 
 function PWAExplanation() {
 

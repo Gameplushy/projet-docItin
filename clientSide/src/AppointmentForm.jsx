@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { initializeApp } from "firebase/app";
-import reactLogo from './assets/react.svg'
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import './App.css'
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from 'react-firebase-hooks/auth';
