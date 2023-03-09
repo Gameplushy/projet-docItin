@@ -57,6 +57,7 @@ function AppointmentList() {
                         console.log(patient)
                         data.client = patient.firstName+" "+patient.lastName
                         data.date = data.date.toDate().toLocaleDateString("fr-FR")+" "+data.date.toDate().toLocaleTimeString("fr-FR") //Why is JS so awful when it comes to formatting dates 
+                        data.mail = patient.mail
                         array.push(data)
                     })
                     console.log(array)
@@ -96,6 +97,7 @@ function AppointmentList() {
                 <th>Patient</th>
                 <th>Date</th>
                 <th>Lieu</th>
+                <th>Contacter</th>
                 <th>Modifier date</th>
                 <th>ics</th>
             </tr>
@@ -106,6 +108,7 @@ function AppointmentList() {
                         <td>{ap.client}</td>
                         <td>{ap.date}</td>
                         <td>{ap.place}</td>
+                        <td><a href={"mailto:"+ap.mail+"?subject=Décalage de votre RDV"}>Envoyer un mail</a></td>
                         <td><button onClick={()=>EditDate(ap)}>Modifier date</button></td>
                         <td><button onClick={()=>CreateICS(ap)}>ics</button></td>
                     </tr>
