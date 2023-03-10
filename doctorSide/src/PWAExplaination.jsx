@@ -85,7 +85,7 @@ function PWAExplanation() {
             <th>Bouton d'installation de PWA manuel</th>
             <td><img src="yes.png"/></td>
             <td><img src="maybe.png"/></td>
-            <td><img src="maybe.png"/></td>
+            <td><img src="yes.png"/></td>
             <td><img src="maybe.png"/></td>
           </tr>
           <tr>
@@ -96,7 +96,7 @@ function PWAExplanation() {
             <td><img src="maybe.png"/></td>
           </tr>
           <tr>
-            <th title="En cours d'implmémentation">Géolocation</th>
+            <th>Géolocation</th>
             <td><img src="yes.png"/></td>
             <td><img src="yes.png"/></td>
             <td><img src="yes.png"/></td>

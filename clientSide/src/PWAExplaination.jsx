@@ -57,14 +57,14 @@ function PWAExplanation() {
             <td><img src="no.png"/></td>
             <td><img src="no.png"/></td>
             <td><img src="yes.png"/></td>
-            <td><img src="maybe.png"/></td>
+            <td><img src="no.png"/></td>
           </tr>
           <tr>
             <th>Notification</th>
             <td><img src="yes.png"/></td>
-            <td><img src="maybe.png"/></td>
             <td><img src="yes.png"/></td>
-            <td><img src="maybe.png"/></td>
+            <td><img src="yes.png"/></td>
+            <td><img src="no.png"/></td>
           </tr>
           <tr>
             <th>Fichier ics</th>
@@ -84,7 +84,7 @@ function PWAExplanation() {
             <th>Bouton d'installation de PWA manuel</th>
             <td><img src="yes.png"/></td>
             <td><img src="maybe.png"/></td>
-            <td><img src="maybe.png"/></td>
+            <td><img src="yes.png"/></td>
             <td><img src="maybe.png"/></td>
           </tr>
           <tr>

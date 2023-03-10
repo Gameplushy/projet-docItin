@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { getFirestore, collection, query, where, getDocs, Timestamp } from 'firebase/firestore';
-import { MapContainer, TileLayer, useMap } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 
 function AppointmentMap() {
   const firebasestuff = {   
@@ -24,6 +24,8 @@ function AppointmentMap() {
 
   const [user, setUser] = useState(null)
   const [userFound, loading, error] = useAuthState(auth)
+
+  const [myPosition,setGeolocation] = useState(null)
 
   const [clientList, loadingClients, errorClients] = useCollectionData(query(collection(getFirestore(app),"/users"),where("userType","==","client"))) 
 
@@ -51,6 +53,7 @@ function AppointmentMap() {
               Disconnect()
             }
             else{
+              GetOwnPosition()
               GetAppointmentList()
             } 
           }
@@ -61,6 +64,22 @@ function AppointmentMap() {
     }
   }
   ,[loading, userFound, navi, loadingClients])
+
+  function GetOwnPosition(){
+    navigator.permissions.query({ name: 'geolocation' }).then(
+      c=>{
+        console.log(c.state)
+        if(c.state==="denied")
+          alert("Access to your location denied. Please enable it and refresh the page.");
+          else{
+            navigator.geolocation.getCurrentPosition(function (loc){
+              setGeolocation([loc.coords.latitude,loc.coords.longitude])
+              console.log("("+loc.coords.latitude+","+loc.coords.longitude+")")})
+          }
+      }
+    )  
+  ,function(err){console.log("An error occured.")}
+  }
 
   function GetAppointmentList(){
     if(!chosenDay) return;
@@ -101,6 +120,11 @@ function AppointmentMap() {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
+          { myPosition!=null && <Marker position={myPosition}>
+            <Popup>
+              Emplacement actuel
+            </Popup>
+          </Marker>}
         </MapContainer>
 
         <div>
