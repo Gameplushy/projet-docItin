@@ -40,6 +40,62 @@ function PWAExplanation() {
       : 
       <p>You cannot access the PWA app in this state.</p>
       }
+      <h2>Liste des fonctionnalités disponibles :</h2>
+      <table>
+        <thead>
+        <tr>
+          <th></th>
+          <th>Windows (Chrome)</th>
+          <th>MacOS (Safari)</th>
+          <th>Android (Chrome)</th>
+          <th>iOS (Safari)</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Vibration</th>
+            <td><img src="no.png"/></td>
+            <td><img src="no.png"/></td>
+            <td><img src="yes.png"/></td>
+            <td><img src="maybe.png"/></td>
+          </tr>
+          <tr>
+            <th>Notification</th>
+            <td><img src="yes.png"/></td>
+            <td><img src="maybe.png"/></td>
+            <td><img src="yes.png"/></td>
+            <td><img src="maybe.png"/></td>
+          </tr>
+          <tr>
+            <th>Fichier ics</th>
+            <td><img src="yes.png"/></td>
+            <td><img src="maybe.png"/></td>
+            <td><img src="yes.png"/></td>
+            <td><img src="maybe.png"/></td>
+          </tr>
+          <tr>
+            <th>Splashscreen</th>
+            <td><img src="maybe.png"/></td>
+            <td><img src="no.png"/></td>
+            <td><img src="yes.png"/></td>
+            <td><img src="no.png"/></td>
+          </tr>
+          <tr>
+            <th>Bouton d'installation de PWA manuel</th>
+            <td><img src="yes.png"/></td>
+            <td><img src="maybe.png"/></td>
+            <td><img src="maybe.png"/></td>
+            <td><img src="maybe.png"/></td>
+          </tr>
+          <tr>
+            <th title="En cours d'implmémentation">Stockage offline des RDV</th>
+            <td><img src="maybe.png"/></td>
+            <td><img src="maybe.png"/></td>
+            <td><img src="maybe.png"/></td>
+            <td><img src="maybe.png"/></td>
+          </tr>
+        </tbody>
+      </table>
       <div><button onClick={GoBack}>Go Back</button></div>
     </div>
   )

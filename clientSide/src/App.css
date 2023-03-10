@@ -68,3 +68,8 @@ th, td{
   background-color: #50e3c2;
   color : whitesmoke
 }
+
+table img{
+  height: 1em;
+  width: 1em;
+}

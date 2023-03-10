@@ -73,3 +73,8 @@ th, td{
   background-color: #e35050;
   color: whitesmoke;
 }
+
+table img{
+  height: 1em;
+  width: 1em;
+}
